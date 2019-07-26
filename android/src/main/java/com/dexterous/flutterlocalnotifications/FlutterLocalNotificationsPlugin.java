@@ -128,13 +128,17 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
                 .setOngoing(BooleanUtils.getValue(notificationDetails.ongoing))
                 .setOnlyAlertOnce(BooleanUtils.getValue(notificationDetails.onlyAlertOnce));
 
+        NotificationCompat.CarExtender carExtender = new NotificationCompat.CarExtender();
+
         setSmallIcon(context, notificationDetails, builder);
         if (!StringUtils.isNullOrEmpty(notificationDetails.largeIcon)) {
             builder.setLargeIcon(getBitmapFromSource(context, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource));
+            carExtender.setLargeIcon(getBitmapFromSource(context, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource));
         }
         if (notificationDetails.color != null) {
             builder.setColor(notificationDetails.color.intValue());
         }
+        builder.extend(carExtender);
 
         applyGrouping(notificationDetails, builder);
         setSound(context, notificationDetails, builder);
