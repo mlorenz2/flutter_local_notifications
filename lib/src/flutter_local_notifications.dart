@@ -27,6 +27,7 @@ class Day {
   static const Thursday = const Day(5);
   static const Friday = const Day(6);
   static const Saturday = const Day(7);
+    //   static const Saturday = const Day(7);
 
   static get values =>
       [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday];
